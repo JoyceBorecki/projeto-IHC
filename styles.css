@@ -1,0 +1,312 @@
+.navbar-brand img {
+  height: 50px;
+  margin-left: 80px;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Isso garante que a navbar sempre apareça no topo de outros elementos */
+  height: 80px; /* Defina a altura que você deseja aqui */
+}
+
+.navbar-secondary {
+  color: white;
+}
+
+.navbar-secondary a {
+  color: white; /* arrumar aqui */
+  text-decoration: none;
+}
+
+
+
+.info-contato {
+  justify-content: flex-end;
+}
+
+.navbar-items {
+  display: flex;
+  gap: 40px;
+}
+
+.navbar:first-child {
+  z-index: 3;
+}
+
+.navbar:nth-child(2) {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 50px; /* Ajuste este valor para a altura desejada */
+}
+
+.modal-body a {
+  display: block;
+  padding: 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.modal-body a:hover {
+  background-color: #f8f9fa;
+}
+
+.services-bar {
+  background-color: #00661D;
+  width: 250px;
+  height: 60px;
+  color: white;
+  font-family: "Biryani", sans-serif;
+  font-weight: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.voce-e {
+  width: 250px;
+  height: 60px;
+  color: #000000;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 20px;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 500;
+}
+
+.servicos-img {
+  max-width: 50%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.col-img {
+  margin-bottom: 90px;
+}
+
+.pesquisa-container {
+  position: relative;
+  max-width: 100%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.pesquisa {
+  position: relative;
+  max-width: 100%;
+  text-align: center;
+}
+
+.pesquisa-img {
+  width: 100%;
+  height: auto;
+}
+
+.pesquisa-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.7); /* Ajuste a opacidade conforme necessário */
+}
+
+.pesquisa-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.pesquisa-input {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+}
+
+.product-hover {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.product-card:hover .product-hover {
+  display: block;
+}
+
+.product-card {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+}
+
+.product-info {
+  padding: 10px 0;
+}
+
+.product-name {
+  flex: 1;
+  font-weight: 600;
+  margin-bottom: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.availability {
+  background-color: rgba(0, 102, 29, 0.5);
+  color: #00661D;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.indisponivel {
+  background-color: rgba(207, 22, 22, 0.5);
+  color: #CF1616;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.container.my-4 img {
+  width: 120px;
+  height: 150px;
+}
+
+.product-card img {
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-rounded {
+  display: inline-block;
+  padding: 10px 40px; /* Ajuste o padding horizontal conforme necessário */
+  border-radius: 50px; /* Isso torna o botão redondo */
+  background-color: rgba(0, 102, 29, 0.5);
+  color: #00661D;
+  font-size: 16px;
+  text-decoration: none; /* Remove o sublinhado padrão */
+  transition: background-color 0.3s, color 0.3s; /* Adiciona uma transição suave */
+}
+
+.btn-rounded:hover {
+  background-color: #00661D;
+  color: white;
+}
+
+/* Adiciona essa parte para remover o sublinhado dos links clicáveis */
+.product-link {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Mantém a cor original */
+}
+
+.product-link:hover {
+  color: inherit; /* Evita a mudança de cor ao passar o mouse */
+}
+
+footer {
+  background-color: #E5E4E2;
+  color: #000;
+  padding: 20px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dropdown-item {
+  color: black !important;
+}
+
+
+.footer-section {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  margin-bottom: 15px;
+}
+
+.corner-image {
+  position: fixed;
+  bottom: 10px;
+  right: 30px;
+  padding-bottom: 30px;
+  z-index: 999; /* Garante que a imagem fique sobre outros elementos */
+  width: 50px;
+}
+
+.btn-pesquisar {
+  background-color: #CF1616;
+  color: white;
+}
+
+.btn-pesquisar-procura {
+  background-color: white;
+  color: #000;
+}
+
+.fas.fa-shopping-cart {
+  color: #CF1616;
+}
+
+
+.font-small {
+  font-size: 14px; /* Tamanho da fonte menor */
+}
+
+.text-gray {
+  color: #666; /* Cor cinza */
+}
+
+.select-opcoes {
+  margin-top: 20px;
+}
+
+.input-largo {
+  width: 500px; /* Ajuste este valor conforme necessário */
+}

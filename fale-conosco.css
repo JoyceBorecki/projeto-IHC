@@ -1,0 +1,54 @@
+.navbar-brand img {
+    height: 50px;
+    margin-left: 80px;
+  }
+  
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Isso garante que a navbar sempre apareça no topo de outros elementos */
+    height: 80px; /* Defina a altura que você deseja aqui */
+  }
+  
+  .navbar-secondary {
+    color: white;
+  }
+  
+  .navbar-secondary a {
+    color: white; /* arrumar aqui */
+    text-decoration: none;
+  }
+
+  .navbar-items {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .navbar:first-child {
+    z-index: 3;
+  }
+  
+  .navbar:nth-child(2) {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    height: 50px; /* Ajuste este valor para a altura desejada */
+  }
+
+  .btn-pesquisar {
+    background-color: #CF1616;
+    color: white;
+  }
+
+  .btn-enviar {
+    background-color: #CF1616;
+    color: white;
+  }
+
+  .fas.fa-shopping-cart {
+    color: #CF1616;
+  }
+
+  .form-control {
+    font-family: "Anek Bangla", sans-serif;
+    }

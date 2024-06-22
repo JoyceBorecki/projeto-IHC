@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baratão Centercar</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="src/logo-baratao.ico">
+    <style>
+        .product-detail {
+            margin: 20px 0;
+        }
+        .product-image img {
+            max-width: 100%;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .product-price {
+            font-size: 2rem;
+            color: #0046AD;
+            margin: 10px 0;
+        }
+        .availability {
+            font-size: 1rem;
+            color: black;
+        }
+        .brand {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+        .add-to-cart {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .add-to-cart button {
+            margin: 0 5px;
+        }
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+        }
+        .btn-buy {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .freight-simulation {
+            margin-top: 20px;
+        }
+        .freight-simulation input {
+            margin-top: 10px;
+        }
+        .freight-simulation .btn-simulate {
+            margin-top: 10px;
+        }
+        .freight-cost {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .confirmation-message {
+            margin-top: 20px;
+            display: none;
+            color: green;
+            font-weight: bold;
+        }
+        .error-message {
+            margin-top: 20px;
+            display: none;
+            color: #CF1616;
+            font-weight: bold;
+        }
+        .product-tabs {
+            margin-top: 40px;
+        }
+        .product-tabs .nav-tabs {
+            margin-bottom: 20px;
+        }
+        .product-tabs .tab-content {
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-top: 0;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 40px 0;
+            color: #333;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            margin: 10px;
+        }
+        .footer-logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        .footer-section h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #cc0000;
+        }
+        .footer-section p {
+            margin: 5px 0;
+        }
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        .info {
+            font-size: 15px;;
+        }
+        .footer-contact i {
+            margin-right: 10px;
+        }
+        .btn-destacado {
+            background-color: #2E7D32;
+            border-color: #2E7D32;
+        }
+        .dropdown-menu-account {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .dropdown-menu-account.active {
+            display: block;
+        }
+        .dropdown-menu-account .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .back-btn {
+            font-size: 30px;
+            cursor: pointer;
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .password-container {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 70%;
+            transform: translateY(-50%);
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        #new-account-form .form-group {
+            margin-top: 25px;
+        }
+        #existing-account-form .form-group {
+            margin-top: 25px;
+        }
+        #welcome-message {
+            font-family: "Anek Bangla", sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+        }
+        .btn-back {
+            margin-left: 40px; /* Ajuste este valor conforme necessário */
+        }
+        .nav-item-link.active {
+    text-decoration: underline; /* ou qualquer outro estilo que você desejar */
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="src/logo-baratao.png" alt="Logo">
+            </a>
+            <div class="d-flex align-items-center w-40">
+                <span id="welcome-message" class="ml-3"></span>
+                <i id="logout-icon" class="fas fa-sign-out-alt ml-3" style="cursor: pointer; display: none;"></i>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg bg-success navbar-secondary">
+        <div class="container">
+            <div class="navbar-collapse">
+                <ul class="navbar-nav navbar-items">
+                    <li class="nav-item">
+                        <button class="btn btn-success nav-link btn-destacado" style="color: white;" id="btn-account">Entre na sua conta</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ver-mais.html">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fale-conosco.html">Fale Conosco</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre-nos.html">Seja um fornecedor</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-collapse ml-auto info-contato">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <span class="nav-link">Contato: (41) 1111-1111</span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">WhatsApp: (41) 9 9911-1111</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="dropdown-menu-account" class="dropdown-menu-account">
+        <span class="close-btn">&times;</span>
+        <span class="back-btn">&larr;</span>
+        <div id="initial-options">
+            <span class="voce-e">Escolha uma opção para acessar a sua conta:</span>
+            <button class="btn btn-primary btn-block" id="new-user-btn">Sou cliente</button>
+            <button class="btn btn-secondary btn-block" id="existing-user-btn">Sou fornecedor</button>
+        </div>
+        <form id="new-account-form" class="hidden">
+            <div class="form-group">
+                <label for="new-email">E-mail:</label>
+                <input type="email" class="form-control" id="new-email" placeholder="exemplo@dominio.com" required>
+                <div id="new-email-error" class="error-message hidden">Por favor, insira um email válido.</div>
+            </div>
+            <div class="form-group">
+                <label for="new-full-name">Nome:</label>
+                <input type="text" class="form-control" id="new-full-name" placeholder="Seu nome" required>
+                <div id="new-full-name-error" class="error-message hidden">Por favor, insira um nome válido contendo apenas letras.</div>
+            </div>
+            <div class="form-group password-container">
+                <label for="new-password">Senha:</label>
+                <input type="password" class="form-control" id="new-password" placeholder="Mínimo de 6 caracteres" required>
+                <i class="fas fa-eye toggle-password"></i>
+                <div id="new-password-error" class="error-message hidden">A senha deve ter pelo menos 6 caracteres.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+        <form id="existing-account-form" class="hidden">
+            <div class="form-group">
+                <label for="existing-name">Nome:</label>
+                <input type="text" class="form-control" id="existing-name" placeholder="Seu Nome" required>
+                <div id="existing-name-error" class="error-message hidden">Por favor, insira um nome válido sem números.</div>
+            </div>
+            <div class="form-group password-container">
+                <label for="existing-password">Senha:</label>
+                <input type="password" class="form-control" id="existing-password" placeholder="Mínimo de 6 caracteres" required>
+                <i class="fas fa-eye toggle-password"></i>
+                <div id="existing-password-error" class="error-message hidden">A senha deve ter pelo menos 6 caracteres.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <button class="btn btn-secondary btn-back" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container product-detail">
+        <div class="row">
+            <div class="col-md-6 product-image">
+                <img src="src/produtos/disco_freio.jpg" alt="Disco de Freio">
+            </div>
+            <div class="col-md-6 product-info">
+                <span class="badge badge-warning">BD3975</span>
+                <h1 class="product-title">Disco de freio dianteiro FreMax BD3975</h1>
+                <p class="product-price">R$ 382,10</p>
+                <p class="availability">Disponível em estoque</p>
+                <div class="add-to-cart">
+                    <input type="number" class="form-control quantity-input" value="0" min="0" required onchange="updateCartQuantity()">
+                    <button class="btn btn-buy ml-3" onclick="buyProduct()">COMPRAR</button>
+                </div>
+                <div class="error-message" id="error-message"></div>
+                                
+                <div class="confirmation-message" id="confirmation-message">
+                    Pedido confirmado! Os detalhes sobre o seu pedido foram enviados para o seu e-mail.
+                </div>
+                <div class="freight-simulation">
+                    <h5>Simulação de frete</h5>
+                    <input type="text" id="cep" class="form-control" placeholder="Informe seu CEP (apenas números)">
+                    <button class="btn btn-primary btn-simulate" onclick="simulateFreight()">Simular Frete</button>
+                    <p id="freight-cost" class="freight-cost"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-tabs">
+            <ul class="nav nav-tabs" id="productTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Descrição</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="additional-info-tab" data-toggle="tab" href="#additional-info" role="tab" aria-controls="additional-info" aria-selected="false">Informação Adicional</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Avaliações (0)</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="productTabContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                    <p>Disco de freio dianteiro 239mm 4 ventilado, 4 furos para os modelos:</p>
+                    <ul>
+                        <li>Volkswagen</li>
+                        <ul>
+                            <li>Gol 1.0 / 1.6 / 1.8 1983 a 2007</li>
+                            <li>Gol 2.0 1993 a 2003</li>
+                            <li>Parati 1.0 1997 a 2004</li>
+                            <li>Parati 1.6 1995 a 2013</li>
+                            <li>Parati 1.8 1995 a 2009</li>
+                            <li>Parati 2.0 1996 a 2005</li>
+                            <li>Quantum 1.8 / 2.0 1990 a 1995</li>
+                            <li>Santana 1.8 / 2.0 1990 a 1993</li>
+                            <li>Santana 1.8 / 2.0 1993 a 2006</li>
+                            <li>Saveiro 1.6 1997 a 2009</li>
+                            <li>Saveiro 1.8 1995 a 2009</li>
+                            <li>Saveiro 2.0 1994 a 2004</li>
+                        </ul>
+                        <li>Ford</li>
+                        <ul>
+                            <li>Royale 1.8 / 2.0 1992 a 1993</li>
+                            <li>Versailles 1.8 / 2.0 1991 a 1993</li>
+                        </ul>
+                    </ul>
+                    <p>Fremax - BD3975 - Valor referente ao par.</p>
+                </div>
+                <div class="tab-pane fade" id="additional-info" role="tabpanel" aria-labelledby="additional-info-tab">
+                    <ul>
+                        <li>Peso</li>
+                        <ul>
+                            <li>13 kg</li>
+                        </ul>
+                    </ul>
+                    <ul>
+                        <li>Dimensões</li>
+                        <ul>
+                            <li>32 × 32 × 10 cm</li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                    <p>Ainda não há avaliações para este produto.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="src/logo-baratao.png" alt="Logo">
+            </div>
+            <div class="footer-section">
+                <h3>SOBRE NÓS</h3>
+                <p>A Baratão Centercar faz parte do grupo Baratão, atuante no mercado de autopeças.</p>
+            </div>
+            <div class="footer-section footer-contact">
+                <h3>ONDE ESTAMOS</h3>
+                <p class="info"><i class="fas fa-map-marker-alt"></i> Rua Exemplo, Curitiba, PR</p>
+                <p class="info"><i class="fas fa-phone-alt"></i> +55 (41) 1111-1111</p>
+                <p class="info"><i class="fas fa-envelope"></i> contato@empresa.com.br</p>
+                <p class="info"><i class="fas fa-clock"></i> 09:00 às 12:00 | 13:00 às 17:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>PAGUE COM</h3>
+                <img src="src/icon/pague-com.jpg" alt="Formas de Pagamento">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        function updateCartQuantity() {
+            const quantityInput = document.querySelector('.quantity-input');
+            const cartQuantity = document.getElementById('cart-quantity');
+            cartQuantity.textContent = quantityInput.value;
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('usuario-logado'));
+            if (user && user.name) {
+                document.getElementById('welcome-message').textContent = `Bem-vindo(a), ${user.name}!`;
+                document.getElementById('welcome-message').style.display = 'block';
+            } else {
+                document.getElementById('welcome-message').style.display = 'none';
+            }
+        });
+
+        //window.addEventListener('beforeunload', function() {
+        //    localStorage.removeItem('usuario-logado');
+        //});
+
+        function simulateFreight() {
+            const cep = document.getElementById('cep').value;
+            let freightCost;
+
+            if (cep.length === 8) {
+                freightCost = (Math.random() * (50 - 10) + 10).toFixed(2);
+                document.getElementById('freight-cost').textContent = `Frete estimado: R$ ${freightCost}`;
+            } else {
+                document.getElementById('freight-cost').textContent = 'Por favor, insira um CEP válido.';
+            }
+        }
+
+        function buyProduct() {
+    const user = JSON.parse(localStorage.getItem('usuario-logado'));
+    const quantityInput = document.querySelector('.quantity-input');
+    const errorMessage = document.getElementById('error-message');
+    const confirmationMessage = document.getElementById('confirmation-message');
+
+    if (!user) {
+        errorMessage.textContent = "Para comprar este produto o usuário deverá acessar sua conta";
+        errorMessage.style.display = 'block';
+        errorMessage.style.color = 'red';
+        confirmationMessage.style.display = 'none';
+    } else if (quantityInput.value == 0) {
+        errorMessage.textContent = "Ops... primeiro escolha a quantidade do produto";
+        errorMessage.style.display = 'block';
+        errorMessage.style.color = 'red';
+        confirmationMessage.style.display = 'none';
+    } else {
+        // Simulação do processo de compra
+        errorMessage.style.display = 'none';
+        confirmationMessage.textContent = "Pedido confirmado! Os detalhes sobre o seu pedido foram enviados para o seu e-mail.";
+        confirmationMessage.style.display = 'block';
+
+        // Esconder a mensagem de confirmação após 5 segundos e recarregar a página
+        setTimeout(() => {
+            confirmationMessage.style.display = 'none';
+            location.reload();
+        }, 5000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const user = JSON.parse(localStorage.getItem('usuario-logado'));
+    if (user && user.name) {
+        document.getElementById('welcome-message').textContent = `Bem-vindo(a), ${user.name}!`;
+        document.getElementById('welcome-message').style.display = 'block';
+        document.getElementById('logout-icon').style.display = 'inline';
+    } else {
+        document.getElementById('welcome-message').style.display = 'none';
+    }
+
+    // Adiciona o evento de clique ao ícone de logout
+    document.getElementById('logout-icon').addEventListener('click', function() {
+        localStorage.removeItem('usuario-logado');
+        document.getElementById('welcome-message').style.display = 'none';
+        document.getElementById('logout-icon').style.display = 'none';
+        location.reload();
+    });
+});
+
+document.querySelector('#btn-account').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('dropdown-menu-account').classList.toggle('active');
+});
+
+document.querySelector('.close-btn').addEventListener('click', function() {
+    document.getElementById('dropdown-menu-account').classList.remove('active');
+    document.getElementById('initial-options').classList.remove('hidden');
+    document.getElementById('new-account-form').classList.add('hidden');
+    document.getElementById('existing-account-form').classList.add('hidden');
+    document.querySelector('.back-btn').style.display = 'none';
+});
+
+document.querySelector('.back-btn').addEventListener('click', function() {
+    document.getElementById('initial-options').classList.remove('hidden');
+    document.getElementById('new-account-form').classList.add('hidden');
+    document.getElementById('existing-account-form').classList.add('hidden');
+    document.querySelector('.back-btn').style.display = 'none';
+});
+
+document.getElementById('new-user-btn').addEventListener('click', function() {
+    document.getElementById('initial-options').classList.add('hidden');
+    document.getElementById('new-account-form').classList.remove('hidden');
+    document.querySelector('.back-btn').style.display = 'block';
+});
+
+document.querySelector('.close-btn').addEventListener('click', function() {
+    document.getElementById('new-email').value = '';
+    document.getElementById('new-full-name').value = '';
+    document.getElementById('new-password').value = '';
+});
+
+document.querySelector('.back-btn').addEventListener('click', function() {
+    document.getElementById('new-email').value = '';
+    document.getElementById('new-full-name').value = '';
+    document.getElementById('existing-name').value = '';
+    document.getElementById('existing-password').value = '';
+    document.getElementById('new-password').value = '';
+});
+
+document.getElementById('existing-user-btn').addEventListener('click', function() {
+    document.getElementById('initial-options').classList.add('hidden');
+    document.getElementById('existing-account-form').classList.remove('hidden');
+    document.querySelector('.back-btn').style.display = 'block';
+});
+
+document.getElementById('new-account-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('new-email').value;
+    const fullName = document.getElementById('new-full-name').value;
+    const password = document.getElementById('new-password').value;
+
+    let isValid = true;
+
+    if (!validateEmail(email)) {
+        document.getElementById('new-email-error').classList.remove('hidden');
+        isValid = false;
+    } else {
+        document.getElementById('new-email-error').classList.add('hidden');
+    }
+    if (!/^[a-zA-Z\s]*$/.test(fullName)) {
+        document.getElementById('new-full-name-error').classList.remove('hidden');
+        isValid = false;
+    } else {
+        document.getElementById('new-full-name-error').classList.add('hidden');
+    }
+    if (password.length < 6) {
+        document.getElementById('new-password-error').classList.remove('hidden');
+        isValid = false;
+    } else {
+        document.getElementById('new-password-error').classList.add('hidden');
+    }
+
+    if (isValid) {
+        const usuarioLogado = {
+            tipo: 'cliente',
+            email: email,
+            name: fullName,
+        };
+        localStorage.setItem('usuario-logado', JSON.stringify(usuarioLogado));
+        document.getElementById('dropdown-menu-account').classList.remove('active');
+        // Atualizar a mensagem de boas-vindas na navbar
+        document.getElementById('welcome-message').textContent = `Bem-vindo, ${fullName}`;
+        document.getElementById('welcome-message').style.display = 'block';
+        location.reload();
+    }
+});
+
+document.getElementById('existing-account-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = document.getElementById('existing-name').value;
+    const password = document.getElementById('existing-password').value;
+
+    let isValid = true;
+
+    if (name.trim() === '' || /\d/.test(name)) {
+        document.getElementById('existing-name-error').classList.remove('hidden');
+        isValid = false;
+    } else {
+        document.getElementById('existing-name-error').classList.add('hidden');
+    }
+    if (password.length < 6) {
+        document.getElementById('existing-password-error').classList.remove('hidden');
+        isValid = false;
+    } else {
+        document.getElementById('existing-password-error').classList.add('hidden');
+    }
+
+    if (isValid) {
+        const usuarioLogado = {
+            tipo: 'fornecedor',
+            name: name,
+        };
+        localStorage.setItem('usuario-logado', JSON.stringify(usuarioLogado));
+        document.getElementById('dropdown-menu-account').classList.remove('active');
+        // Atualizar a mensagem de boas-vindas na navbar
+        document.getElementById('welcome-message').textContent = `Bem-vindo, ${name}`;
+        document.getElementById('welcome-message').style.display = 'block';
+        location.reload();
+    }
+});
+
+    document.querySelectorAll('.toggle-password').forEach(item => {
+        item.addEventListener('click', function() {
+            const passwordField = this.previousElementSibling;
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    });
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
